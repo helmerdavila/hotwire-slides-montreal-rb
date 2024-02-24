@@ -4,6 +4,7 @@ fonts:
   sans: "Quicksand"
 layout: intro-image-right
 image: ./images/hotwire.gif
+monaco: true
 ---
 
 # Hotwire - Ruby on Rails
