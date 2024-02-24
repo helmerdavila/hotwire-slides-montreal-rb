@@ -8,10 +8,7 @@ dependencies:
   '@slidev/cli':
     specifier: ^0.48.0-beta.8
     version: 0.48.0-beta.8(@types/markdown-it@13.0.7)(postcss@8.4.35)
-  '@slidev/theme-default':
-    specifier: latest
-    version: 0.25.0
-  '@slidev/theme-seriph':
+  '@slidev/theme-apple-basic':
     specifier: latest
     version: 0.25.0
   vue:
@@ -1122,17 +1119,8 @@ packages:
       roughjs: 4.6.6
     dev: false
 
-  /@slidev/theme-default@0.25.0:
-    resolution: {integrity: sha512-iWvthH1Ny+i6gTwRnEeeU+EiqsHC56UdEO45bqLSNmymRAOWkKUJ/M0o7iahLzHSXsiPu71B7C715WxqjXk2hw==}
-    engines: {node: '>=14.0.0', slidev: '>=v0.47.0'}
-    dependencies:
-      '@slidev/types': 0.47.5
-      codemirror-theme-vars: 0.1.2
-      prism-theme-vars: 0.2.4
-    dev: false
-
-  /@slidev/theme-seriph@0.25.0:
-    resolution: {integrity: sha512-PnFQbn4I70+/cVie5iAr0Im6sYvnwjkO7Yj5KonTyJZFFJFytckLTrD3ijft/J4cRnz7OmSzTyQKNX1FN/x0YQ==}
+  /@slidev/theme-apple-basic@0.25.0:
+    resolution: {integrity: sha512-qt6F+DN0NxREpsWzH7LmU2DRE57E+tSE5UnqwLaJiQO5ldaf3jucvnqBU52Noz5aKM35oPNdtmOxIhfyxtu0RA==}
     engines: {node: '>=14.0.0', slidev: '>=v0.47.0'}
     dependencies:
       '@slidev/types': 0.47.5
