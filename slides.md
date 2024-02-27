@@ -81,6 +81,7 @@ Turbo.visit(location, { action: "restore" })
 <a href="/edit" data-turbo-action="replace">Edit</a>
 ```
 
+
 ---
 
 # Morphing
@@ -129,6 +130,18 @@ E.g an alert message.
 
 ```html
 <div data-turbo-permanent>...</div>
+```
+
+---
+
+# Turbo frames
+
+Turbo Frames are a way to isolate parts of a page into independent contexts, which can be lazily loaded and updated.
+
+```html
+<turbo-frame id="my-refreshing-frame" refresh="morph">
+  ...
+</turbo-frame>
 ```
 
 ---
