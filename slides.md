@@ -82,6 +82,56 @@ Turbo.visit(location, { action: "restore" })
 ```
 
 ---
+
+# Morphing
+
+This is how you can configure page refreshes using Turbo Drive.
+
+```html
+<head>
+  ...
+  <meta name="turbo-refresh-method" content="morph">
+</head>
+```
+
+There are two options to send as `content`:
+
+- `replace` (default): Replaces the entire body of the page.
+- `morph`: Replaces only the elements that have changed.
+
+---
+
+# Scroll preservation
+
+We can also identify how we want to handle the scroll position when navigating.
+
+```html
+<head>
+  ...
+  <meta name="turbo-refresh-scroll" content="preserve">
+</head>
+```
+
+There are two options to send as `content`:
+
+- `preserve`: Preserves the scroll position.
+- `reset` (default): Resets the scroll position to the top of the page.
+
+---
+
+# Exclude from morphing
+
+### Use case
+
+You need to exclude HTML elements from being morphed when navigating. 
+
+E.g an alert message.
+
+```html
+<div data-turbo-permanent>...</div>
+```
+
+---
 layout: fact
 ---
 
