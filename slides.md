@@ -8,7 +8,7 @@ monaco: true
 ---
 
 # Hotwire - Ruby on Rails
-## Intro and usage
+### Intro and usage
 
 ---
 
@@ -60,7 +60,7 @@ Turbo Drive replaces HTML elements in the current page with the corresponding el
 
 # Turbo Drive Actions
 
-## As javascript
+### As javascript
 
 ```js
 // Moving forward
@@ -72,7 +72,7 @@ Turbo.visit(location, { action: "replace" })
 Turbo.visit(location, { action: "restore" })
 ```
 
-## As Ruby (HTML)
+### As Ruby (HTML)
 
 ```html
 <!-- Moving forward -->
@@ -143,6 +143,74 @@ Turbo Frames are a way to isolate parts of a page into independent contexts, whi
   ...
 </turbo-frame>
 ```
+
+---
+
+# Basic frames
+
+```html
+<turbo-frame id="messages">
+  <a href="/messages/expanded">
+    Show all expanded messages in this frame.
+  </a>
+
+  <form action="/messages">
+    Show response from this form within this frame.
+  </form>
+</turbo-frame>
+```
+
+---
+
+# Eager loaded frame
+
+```html
+<turbo-frame id="messages" src="/messages">
+  Content will be replaced when /messages has been loaded.
+</turbo-frame>
+```
+
+---
+
+# Lazy loaded frame
+
+```html
+<turbo-frame id="messages" src="/messages" loading="lazy">
+  Content will be replaced when the frame becomes visible and /messages has been loaded.
+</turbo-frame>
+```
+
+---
+
+# Turbo frame `<turbo-frame>` HTML attributes
+
+### HTML attributes
+
+- `src` URL or path value that controls navigation of the element.
+- `loading` with two values `eager` and `lazy`. `loading="eager"` will immediately load the frame, while `loading="lazy"` will load the frame when it becomes visible.
+- `busy` boolean attribute that indicates if the frame is currently loading. Managed by Turbo.
+- `disabled` for disabling frame navigation.
+- `complete` boolean attribute that indicates if the frame has finished loading. Managed by Turbo.
+- `autoscroll` boolean attribute that indicates if the frame should scroll to the top after loading. Managed by Turbo.
+
+---
+
+# Turbo frame properties
+
+The same properties can be controlled from JavaScript.
+
+- `FrameElement.src`
+- `FrameElement.disabled`
+- `FrameElement.loading`
+- `FrameElement.loaded`
+- `FrameElement.complete`
+- `FrameElement.autoscroll`
+- `FrameElement.isActive`
+- `FrameElement.isPreview`
+
+# Turbo frame functions
+
+- `FrameElement.reload()`
 
 ---
 layout: fact
