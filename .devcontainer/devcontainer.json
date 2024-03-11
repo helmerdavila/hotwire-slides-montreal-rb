@@ -1,0 +1,19 @@
+{
+  "name": "Hotwire Montreal RB Slides",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+  "customizations": {
+    "vscode": {
+      "extensions": ["antfu.slidev"]
+    }
+  },
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+  },
+
+  // "forwardPorts": [],
+
+  "postCreateCommand": "pnpm install"
+}
