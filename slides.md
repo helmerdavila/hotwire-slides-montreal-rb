@@ -30,10 +30,16 @@ monaco: true
 - _**Turbo Native**_ lets your majestic monolith form the center of your native iOS and Android apps, with seamless transitions between web and native sections.
 
 ---
+layout: fact
+---
 
-# Turbo Drive navigation
+# Turbo Drive
 
 Turbo Drive replaces HTML elements in the current page with the corresponding elements from the response, without a full page reload.
+
+---
+
+# Example of Turbo Drive behaviour
 
 ```html {monaco-diff}
 <html>
@@ -133,10 +139,16 @@ E.g an alert message.
 ```
 
 ---
+layout: fact
+---
 
 # Turbo frames
 
-Turbo Frames are a way to isolate parts of a page into independent contexts, which can be lazily loaded and updated.
+Isolate parts of a page into independent contexts, which can be lazily loaded and updated.
+
+---
+
+# Example of a Turbo Frame
 
 ```html
 <turbo-frame id="my-refreshing-frame" refresh="morph">
@@ -211,6 +223,14 @@ The same properties can be controlled from JavaScript.
 # Turbo frame functions
 
 - `FrameElement.reload()`
+
+---
+layout: fact
+---
+
+# Turbo Streams
+
+Specify the behaviour of added elements to the UI
 
 ---
 layout: fact
