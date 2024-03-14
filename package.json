@@ -9,7 +9,7 @@
     "remote": "slidev --remote"
   },
   "dependencies": {
-    "@slidev/cli": "0.48.1",
+    "@slidev/cli": "0.48.2",
     "@slidev/theme-apple-basic": "latest",
     "vue": "^3.4.19"
   }
