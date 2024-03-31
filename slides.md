@@ -90,6 +90,29 @@ Turbo.visit(location, { action: "restore" })
 
 ---
 
+# Turbo Drive: Reload assets when changed
+
+Add `data-turbo-track="reload"` to the `<link>` and `<script>` tags to reload them when the page changes.
+
+Make sure that you have a unique identifier in the file name.
+
+If you are using the gem Turbo Rails, it will automatically add the unique identifier to the file name.
+
+```erb
+<%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+```
+
+```html
+<head>
+  ...
+  <link rel="stylesheet" href="/application-258e88d.css" data-turbo-track="reload">
+  <script src="/application-cbd3cd4.js" data-turbo-track="reload"></script>
+</head>
+```
+
+---
+
 # Morphing
 
 This is how you can configure page refreshes using Turbo Drive.
