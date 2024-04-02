@@ -162,6 +162,75 @@ E.g an alert message.
 ```
 
 ---
+
+# Example of Turbo Drive - Form Code
+
+```erb
+<%= form_with model: @job, url: local_assigns[:form_url] do |form| %>
+  <div class="mb-2">
+    <%= form.label :name, "Role", class: "block font-semibold" %>
+    <%= form.text_field :name, class: "w-full rounded" %>
+  </div>
+  <div class="mb-2">
+    <%= form.label :status, class: "block font-semibold" %>
+    <%= form.text_field :status, class: "w-full rounded" %>
+  </div>
+  <div class="mb-2">
+    <%= form.label :tag, class: "block font-semibold" %>
+    <%= form.collection_select :tag_id, @tags, :id, :name, {}, { class: "w-full rounded" } %>
+  </div>
+  <% if local_assigns[:update] %>
+    <%= form.submit "Update job", class: "mt-7 bg-black text-white rounded w-full py-3 font-semibold" %>
+  <% else %>
+    <%= form.submit "Create job", class: "mt-7 bg-black text-white rounded w-full py-3 font-semibold" %>
+  <% end %>
+<% end %>
+```
+
+---
+
+# Example of Turbo Drive - Updating configuration
+
+```js
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import { Turbo } from "@hotwired/turbo-rails"
+
+// Reduce delay for progress bar from 500ms to 0ms
+Turbo.setProgressBarDelay(0);
+
+// This one doesn't keep history
+const navigateToJobsLink = document.querySelector('#navigate-to-jobs');
+if (navigateToJobsLink) {
+    navigateToJobsLink.addEventListener('click', () => Turbo.visit('/jobs'));
+}
+```
+
+---
+
+# Turbo Drive gem - Module: Turbo::DriveHelper
+
+```erb
+<!-- app/views/application.html.erb -->
+<!-- Required to work -->
+<html><head><%= yield :head %></head><body><%= yield %></html>
+
+<!-- app/views/trays/index.html.erb -->
+<% turbo_exempts_page_from_cache %>
+<p>Page that shouldn't be cached by Turbo</p>
+```
+
+```erb
+<% turbo_exempts_page_from_cache %>
+<% turbo_exempts_page_from_cache_tag %>
+<% turbo_page_requires_reload %>
+<% turbo_page_requires_reload_tag %>
+<% turbo_refresh_method_tag(method = :replace) %>
+<% turbo_refresh_scroll_tag(scroll = :reset) %>
+<% turbo_refreshes_with(method: :replace, scroll: :reset) %>
+```
+
+
+---
 layout: fact
 ---
 
@@ -246,6 +315,168 @@ The same properties can be controlled from JavaScript.
 # Turbo frame functions
 
 - `FrameElement.reload()`
+
+---
+
+# T. Frame with gem - Module: Turbo::FramesHelper
+
+```erb
+<%= turbo_frame_tag "tray", src: tray_path(tray) %>
+# => <turbo-frame id="tray" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag tray, src: tray_path(tray) %>
+# => <turbo-frame id="tray_1" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag "tray", src: tray_path(tray), target: "_top" %>
+# => <turbo-frame id="tray" target="_top" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag "tray", target: "other_tray" %>
+# => <turbo-frame id="tray" target="other_tray"></turbo-frame>
+
+<%= turbo_frame_tag "tray", src: tray_path(tray), loading: "lazy" %>
+# => <turbo-frame id="tray" src="http://example.com/trays/1" loading="lazy"></turbo-frame>
+
+<%= turbo_frame_tag "tray" do %>
+  <div>My tray frame!</div>
+<% end %>
+# => <turbo-frame id="tray"><div>My tray frame!</div></turbo-frame>
+
+<%= turbo_frame_tag [user_id, "tray"], src: tray_path(tray) %>
+# => <turbo-frame id="1_tray" src="http://example.com/trays/1"></turbo-frame>
+```
+
+---
+
+# Turbo Frame - Example using gem functions
+
+````md magic-move
+
+```erb
+<section class="border-sky-700 border-8 bg-white p-20 shadow-2xl w-full">
+  <h1 class="text-3xl font-bold text-black mb-5">🔨 Jobs</h1>
+  <%= turbo_frame_tag JobFrameController::JOB_FRAME_ID do %>
+    <%= link_to 'Create new job', new_job_frame_path, class: "block py-6 underline" %>
+    <table class="border border-collapse border-slate-400 w-96">
+      <thead>
+      ...
+      <tbody>
+      <% @jobs.each do |j| %>
+        <tr>
+          <td class="border border-slate-400 text-left px-2 py-3"><%= j.name %></td>
+          <td class="border border-slate-400 text-left px-2 py-3"><%= j.status %></td>
+          <td class="border border-slate-400 text-left px-2 py-3"><%= j.tag.name %></td>
+          <td class="border border-slate-400 text-left px-2 py-3">
+            <%= link_to 'Show', job_frame_path(j), class: "underline" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render "dashboard/root" %>
+  <% end %>
+</section>
+```
+
+```erb
+<%= turbo_frame_tag JobFrameController::JOB_FRAME_ID do %>
+<% end %>
+```
+
+```ruby
+class JobFrameController < ApplicationController
+  JOB_FRAME_ID = "jobs-frame"
+
+  def index
+    @jobs = Job.includes(:tag).all
+  end
+
+  # ... other actions
+end
+```
+
+````
+
+---
+
+# Turbo Frame - Example using HTML
+
+````md magic-move
+
+```erb
+<section class="border-sky-700 border-8 bg-white p-20 shadow-2xl w-full flex flex-row">
+  <section class="mr-7">
+    <h1 class="text-5xl font-bold mb-5">New tag</h1>
+    <turbo-frame id="<%= TagFrameController::TAG_FRAME_FORM_ID %>" src="<%= new_tag_frame_path(@tag) %>">
+    </turbo-frame>
+  </section>
+  <section>
+    <h1 class="text-5xl font-bold mb-5">🏷️ Tags</h1>
+    <turbo-frame id="<%= TagFrameController::TAG_FRAME_ID %>">
+      <table class="border border-collapse border-slate-400 w-96">
+        <thead>
+        <tr>
+          <th class="border border-slate-400 text-left px-2 py-3">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td class="border border-slate-400 text-left px-2 py-3"><%= tag.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </turbo-frame>
+  </section>
+</section>
+```
+
+```erb
+<!-- app/views/tag_frame/index.html.erb -->
+<turbo-frame id="<%= TagFrameController::TAG_FRAME_FORM_ID %>" src="<%= new_tag_frame_path(@tag) %>">
+</turbo-frame>
+<turbo-frame id="<%= TagFrameController::TAG_FRAME_ID %>">
+  <!-- code to display the table -->
+</turbo-frame>
+```
+
+```erb
+<!-- app/views/tag_frame/new.html.erb -->
+<turbo-frame id="<%= TagFrameController::TAG_FRAME_FORM_ID %>">
+  <%= form_with model: @tag, url: tag_frame_index_path, data: { turbo_frame: TagFrameController::TAG_FRAME_ID } do |form| %>
+    <div class="mb-2">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <%= form.submit "Create tag", class: "block mt-7 py-3 bg-black rounded text-white text-center w-full" %>
+  <% end %>
+</turbo-frame>
+```
+
+```erb
+<!-- app/views/tag_frame/new.html.erb -->
+<turbo-frame id="<%= TagFrameController::TAG_FRAME_FORM_ID %>">
+  <%= form_with ..., data: { turbo_frame: TagFrameController::TAG_FRAME_ID } do |form| %>
+  <% end %>
+</turbo-frame>
+```
+
+```ruby
+class TagFrameController < ApplicationController
+  TAG_FRAME_ID = "tags-frame"
+  TAG_FRAME_FORM_ID = "tags-frame-form"
+
+  def index
+    @tags = Tag.all
+    @tag = Tag.new
+  end
+
+  # ... other actions
+end
+```
+
+````
+
 
 ---
 layout: fact
