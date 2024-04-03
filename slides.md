@@ -486,6 +486,16 @@ layout: fact
 
 Specify the behaviour of added elements to the UI
 
+## But, be careful...
+
+_**It’s good practice to start your interaction design without Turbo Streams**_. Make the entire application work as it would if Turbo Streams were not available, then layer them on as a level-up. This means you won’t come to rely on the updates for flows that need to work in native applications or elsewhere without them.
+
+---
+
+# But What About Running JavaScript?
+
+Turbo Streams consciously restricts you to eight actions: append, prepend, (insert) before, (insert) after, replace, update, remove, and refresh. If you want to trigger additional behavior when these actions are carried out, you should attach behavior using Stimulus controllers.
+
 ---
 
 ## Append
