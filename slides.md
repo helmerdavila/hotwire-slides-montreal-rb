@@ -58,12 +58,14 @@ image: ./images/wall.jpg
 - _**Turbo Native**_ lets your majestic monolith form the center of your native iOS and Android apps, with seamless transitions between web and native sections.
 
 ---
-layout: fact
+layout: intro-image
+image: ./images/wall.jpg
 ---
 
-# Turbo Drive
-
-Turbo Drive replaces HTML elements in the current page with the corresponding elements from the response, without a full page reload.
+<div class="absolute left-10 bottom-10">
+  <h1>Turbo Drive</h1>
+  <p>Turbo Drive replaces HTML elements in the current page with the corresponding elements from the response, without a full page reload</p>
+</div>
 
 ---
 
@@ -259,12 +261,14 @@ if (navigateToJobsLink) {
 
 
 ---
-layout: fact
+layout: intro-image
+image: ./images/wall.jpg
 ---
 
-# Turbo frames
-
-Isolate parts of a page into independent contexts, which can be lazily loaded and updated.
+<div class="absolute bottom-10 left-10">
+  <h1>Turbo Frames</h1>
+  <p>Isolate parts of a page into independent contexts, which can be lazily loaded and updated</p>
+</div>
 
 ---
 
@@ -507,14 +511,19 @@ end
 
 
 ---
-layout: fact
+layout: intro-image
+image: ./images/wall.jpg
 ---
 
-# Turbo Streams
+<div class="absolute bottom-10 left-10">
+  <h1>Turbo Streams</h1>
+  <p>Specify the behaviour of added elements to the UI</p>
+</div>
 
-Specify the behaviour of added elements to the UI
 
-## But, be careful...
+---
+
+# But, be careful...
 
 _**It’s good practice to start your interaction design without Turbo Streams**_. Make the entire application work as it would if Turbo Streams were not available, then layer them on as a level-up. This means you won’t come to rely on the updates for flows that need to work in native applications or elsewhere without them.
 
