@@ -1,7 +1,7 @@
 ---
-theme: apple-basic
+theme: "apple-basic"
 fonts:
-  sans: "Quicksand"
+  sans: "Mulish"
 layout: intro-image-right
 image: ./images/hotwire.gif
 monaco: true
@@ -9,6 +9,34 @@ monaco: true
 
 # Hotwire - Ruby on Rails
 ### Intro and usage
+
+---
+layout: intro-image
+image: ./images/wall.jpg
+---
+
+# About me
+
+## Helmer Davila
+
+### Profile
+
+- Software Engineer with 9+ years of experience
+- Spanish, English and French
+- **Backend Developer:** PHP, Ruby, Python, Node.js, a lot of AWS
+- **Frontend Developer:** React, Angular 2+, Vue, React Native
+
+### Fun facts
+
+- First computer at 9 years old, Pentium II
+- Former technical cofounder of a startup
+
+---
+
+# Goals of this presentation
+
+- Learn how **Hotwire Turbo (Drive, Frames, Streams)** works
+- **Avoid using Javascript**, until you really need it
 
 ---
 
