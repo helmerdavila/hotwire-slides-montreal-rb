@@ -259,6 +259,14 @@ if (navigateToJobsLink) {
 <% turbo_refreshes_with(method: :replace, scroll: :reset) %>
 ```
 
+---
+layout: fact
+---
+
+# Demo
+
+## Turbo Drive
+
 
 ---
 layout: intro-image
@@ -509,6 +517,14 @@ end
 
 ````
 
+---
+layout: fact
+---
+
+# Demo
+
+## Turbo Frames
+
 
 ---
 layout: intro-image
@@ -641,6 +657,14 @@ Initiates a Page Refresh to render new content with morphing.
 <!-- debounced with `[request-id]` -->
 <turbo-stream action="refresh" request-id="abcd-1234"></turbo-stream>
 ```
+
+---
+layout: fact
+---
+
+# Demo
+
+## Turbo Streams
 
 ---
 layout: intro-image
