@@ -643,6 +643,15 @@ Initiates a Page Refresh to render new content with morphing.
 ```
 
 ---
+layout: intro-image
+image: ./images/wall.jpg
+---
+
+<div class="absolute bottom-10 left-10">
+  <h1>Testing</h1>
+</div>
+
+---
 layout: fact
 ---
 
