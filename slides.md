@@ -260,6 +260,32 @@ if (navigateToJobsLink) {
 ```
 
 ---
+
+# Testing in Turbo Drive
+
+Testing is the same as testing a regular Rails application
+
+```ruby
+class JobsControllerTest < ActionDispatch::IntegrationTest
+  test "should get index" do
+    get jobs_path
+    assert_response :success
+  end
+
+  test "should create job" do
+    job_count_first = Job.count
+    post jobs_path, params: { job: { name: 'New Job', status: :active, tag_id: tags(:tag_ruby).id } }
+    job_count_last = Job.count
+
+    assert_equal job_count_first + 1, job_count_last
+    assert_redirected_to job_path(Job.last)
+  end
+
+  # ... other tests
+end
+```
+
+---
 layout: fact
 ---
 
@@ -326,7 +352,7 @@ image: ./images/wall.jpg
 
 ---
 
-# Turbo frame `<turbo-frame>` HTML attributes
+# Turbo frames `<turbo-frame>` HTML attributes
 
 ### HTML attributes
 
@@ -339,7 +365,7 @@ image: ./images/wall.jpg
 
 ---
 
-# Turbo frame properties
+# Turbo frames properties
 
 The same properties can be controlled from JavaScript.
 
@@ -352,7 +378,7 @@ The same properties can be controlled from JavaScript.
 - `FrameElement.isActive`
 - `FrameElement.isPreview`
 
-# Turbo frame functions
+# Turbo frames functions
 
 - `FrameElement.reload()`
 
@@ -387,7 +413,7 @@ The same properties can be controlled from JavaScript.
 
 ---
 
-# Turbo Frame - Example using gem functions
+# Turbo Frames - Example using gem functions
 
 ````md magic-move
 
@@ -438,7 +464,7 @@ end
 
 ---
 
-# Turbo Frame - Example using HTML
+# Turbo Frames - Example using HTML
 
 ````md magic-move
 
@@ -516,6 +542,28 @@ end
 ```
 
 ````
+
+---
+
+# Turbo Frames - Testing
+
+Tests also work the same as a regular Rails application.
+
+```ruby
+class TagFrameControllerTest < ActionDispatch::IntegrationTest
+  test "should get index" do
+    get tag_frame_index_path
+    assert_response :success
+  end
+
+  test "should create tag" do
+    post tag_frame_index_path, params: { tag: { name: 'New Tag' } }
+    assert_redirected_to tag_frame_index_path
+  end
+
+  # ... other tests
+end
+```
 
 ---
 layout: fact
@@ -657,6 +705,34 @@ Initiates a Page Refresh to render new content with morphing.
 <!-- debounced with `[request-id]` -->
 <turbo-stream action="refresh" request-id="abcd-1234"></turbo-stream>
 ```
+
+---
+
+# Turbo Streams - Testing
+
+Tests change a bit when using Turbo Streams. Because we need to specify the type of the response we are expecting
+
+```ruby
+class JobApplicationControllerTest < ActionDispatch::IntegrationTest
+  test "should create job application" do
+    job_application_count = Application.count
+    post job_application_index_path, params: { application: { job_id: jobs(:job_javascript_sr_developer).id, name: 'John Doe', cover_letter: 'I am an excellent developer' } }
+    job_application_count_after = Application.count
+    assert_equal job_application_count + 1, job_application_count_after
+  end
+
+  test "should create job application with turbo stream" do
+    job_application_count = Application.count
+    post job_application_index_path, params: { application: { job_id: jobs(:job_javascript_sr_developer).id, name: 'John Doe', cover_letter: 'I am an excellent developer' } }, as: :turbo_stream
+    job_application_count_after = Application.count
+    assert_equal job_application_count + 1, job_application_count_after
+    assert_response :success
+  end
+
+  # ... other tests
+end
+```
+
 
 ---
 layout: fact
