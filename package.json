@@ -9,6 +9,7 @@
     "remote": "slidev --remote"
   },
   "dependencies": {
+    "@iconify-json/logos": "^1.1.42",
     "@slidev/cli": "0.48.8",
     "@slidev/theme-apple-basic": "latest",
     "vue": "^3.4.19"

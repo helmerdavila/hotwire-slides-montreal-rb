@@ -752,6 +752,13 @@ image: ./images/wall.jpg
 </div>
 
 ---
+
+# Links
+
+- [<logos-github-icon/> Demo Repo](https://github.com/helmerdavila/hotwire-demoapp-montreal-rb)
+- [<logos-github-icon/> Slides Repo](https://github.com/helmerdavila/hotwire-slides-montreal-rb)
+
+---
 layout: fact
 ---
 
