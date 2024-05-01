@@ -293,6 +293,10 @@ layout: fact
 
 ## Turbo Drive
 
+<!-- 
+- Show here the code about showing the red line 
+- Show here the hover feature 
+-->
 
 ---
 layout: intro-image
@@ -573,6 +577,14 @@ layout: fact
 
 ## Turbo Frames
 
+<!-- 
+- Check that here the 🔨 Jobs is not changing
+- Show that everything is getting rendered within the frame
+- Also display the other frames example, with multiple frames
+- In the second example, show that there are two frames
+- Also in the new.html.erb, show that the result of the form is rendered in the respective frame
+-->
+
 
 ---
 layout: intro-image
@@ -742,6 +754,11 @@ layout: fact
 
 ## Turbo Streams
 
+<!--
+- Show the actions when you register a new record
+- Also show when you delete a record
+-->
+
 ---
 layout: intro-image
 image: ./images/wall.jpg
@@ -750,6 +767,15 @@ image: ./images/wall.jpg
 <div class="absolute bottom-10 left-10">
   <h1>Testing</h1>
 </div>
+
+---
+
+# Conclusions (Personal Opinion)
+
+- **Should I stop using JavaScript?** No, but if you can take advantage of the framework tools, do it.
+- **What about SEO?** Google can index your pages with Turbo Drive.
+- **What about performance?** Turbo Drive is faster than a full page reload.
+- **What about the learning curve?** It's not that hard, as long your Ruby knowledge keeps up.
 
 ---
 
